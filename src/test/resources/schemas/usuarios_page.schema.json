@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/usuarios_page.schema.json",
+  "type": "object",
+  "properties": {
+    "respuesta": {
+      "type": ["array", "object", "null"]
+    }
+  },
+  "additionalProperties": true
+}
+
+

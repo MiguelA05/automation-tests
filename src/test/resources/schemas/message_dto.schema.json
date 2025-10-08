@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/message_dto.schema.json",
+  "type": "object",
+  "properties": {
+    "mensaje": { "type": "string" },
+    "respuesta": {}
+  },
+  "required": ["mensaje"],
+  "additionalProperties": true
+}
+
+
