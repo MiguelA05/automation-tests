@@ -14,6 +14,9 @@ pipeline {
 
     environment {
         SONARQUBE = 'SonarQube-Server'
+        MVN_HOME = tool(name: 'Maven-3.9', type: 'maven')
+        JDK_HOME = tool(name: 'jdk21', type: 'jdk')
+        MVN = "${MVN_HOME}/bin/mvn"
     }
 
     stages {
@@ -28,7 +31,9 @@ pipeline {
         stage('Build + Unit tests (service)') {
             steps {
                 dir('service') {
-                    sh 'mvn clean verify'
+                    sh 'ls -la'
+                    sh "${MVN} -v"
+                    sh "${MVN} clean verify"
                 }
             }
             post {
@@ -49,7 +54,7 @@ pipeline {
         stage('Allure (service)') {
             steps {
                 dir('service') {
-                    sh 'mvn -q -e allure:report || true'
+                    sh "${MVN} -q -e allure:report || true"
                 }
                 publishHTML([
                     allowMissing: true,
@@ -66,7 +71,7 @@ pipeline {
             steps {
                 dir('service') {
                     withSonarQubeEnv("${SONARQUBE}") {
-                        sh 'mvn sonar:sonar -Dsonar.projectKey=jwtgeneratortaller1 -Dsonar.host.url=http://sonarqube:9000 -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml'
+                        sh "${MVN} sonar:sonar -Dsonar.projectKey=jwtgeneratortaller1 -Dsonar.host.url=http://sonarqube:9000 -Dsonar.coverage.jacoco.xmlReportPaths=target/site/jacoco/jacoco.xml"
                     }
                 }
             }
@@ -82,8 +87,8 @@ pipeline {
 
         stage('E2E (automation-tests)') {
             steps {
-                sh "mvn -q -e clean test -DbaseUrl=${params.AUT_TESTS_BASE_URL} -DbasePath=/v1"
-                sh 'mvn -q -e allure:report || true'
+                sh "${MVN} -q -e clean test -DbaseUrl=${params.AUT_TESTS_BASE_URL} -DbasePath=/v1"
+                sh "${MVN} -q -e allure:report || true"
                 publishHTML([
                     allowMissing: true,
                     alwaysLinkToLastBuild: true,
