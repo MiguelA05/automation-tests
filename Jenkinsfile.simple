@@ -4,7 +4,7 @@ pipeline {
     parameters {
         string(name: 'SERVICE_REPO_URL', defaultValue: 'https://github.com/Tourment0412/jwtmanual-taller1-micro.git', description: 'Repo del microservicio a construir')
         string(name: 'SERVICE_BRANCH', defaultValue: 'main', description: 'Rama del microservicio')
-        string(name: 'AUT_TESTS_BASE_URL', defaultValue: 'http://jwtmanual-taller1-micro:8080', description: 'Base URL del servicio bajo prueba')
+        string(name: 'AUT_TESTS_BASE_URL', defaultValue: 'http://jwtmanual-taller1-micro:8081', description: 'Base URL del servicio bajo prueba')
     }
 
     tools {
@@ -31,7 +31,7 @@ pipeline {
                 dir('service') {
                     sh 'ls -la'
                     sh "${MVN} -v"
-                    sh "${MVN} clean verify"
+                    sh "${MVN} clean verify -Dspring.profiles.active=test-no-containers -Dtestcontainers.checks.disable=true -Dtestcontainers.ryuk.disabled=true -Dtest=CucumberRealServicesTest"
                 }
             }
             post {
@@ -70,7 +70,7 @@ pipeline {
 
         stage('E2E (automation-tests)') {
             steps {
-                sh "${MVN} -q -e clean test -DbaseUrl=${params.AUT_TESTS_BASE_URL} -DbasePath=/v1"
+                sh "${MVN} -q -e clean test -Dtest=CucumberTest"
                 sh "${MVN} -q -e allure:report || true"
                 publishHTML([
                     allowMissing: true,

@@ -1,12 +1,14 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://example.com/schemas/message_dto.schema.json",
+  "title": "MessageDTO",
   "type": "object",
   "properties": {
-    "mensaje": { "type": "string" },
+    "mensaje": { "type": ["string", "null"] },
+    "estado": { "type": ["string", "null"] },
     "respuesta": {}
   },
-  "required": ["mensaje"],
+  "required": ["respuesta"],
   "additionalProperties": true
 }
 

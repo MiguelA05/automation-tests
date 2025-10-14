@@ -1,12 +1,14 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://example.com/schemas/usuarios_page.schema.json",
+  "title": "UsuariosPage",
   "type": "object",
   "properties": {
     "respuesta": {
       "type": ["array", "object", "null"]
     }
   },
+  "required": ["respuesta"],
   "additionalProperties": true
 }
 

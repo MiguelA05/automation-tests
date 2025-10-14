@@ -1,17 +1,23 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://example.com/schemas/token_response.schema.json",
+  "title": "TokenResponse",
   "type": "object",
   "properties": {
-    "token": { "type": ["string", "null"] },
+    "mensaje": { "type": ["string", "null"] },
+    "estado": { "type": ["string", "null"] },
     "respuesta": {
-      "type": ["object", "null"],
-      "properties": {
-        "token": { "type": ["string", "null"] }
-      },
-      "additionalProperties": true
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": { "token": { "type": "string" } },
+          "required": ["token"]
+        },
+        { "type": "string" }
+      ]
     }
   },
+  "required": ["respuesta"],
   "additionalProperties": true
 }
 

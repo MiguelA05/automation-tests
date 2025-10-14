@@ -1,2 +1,4 @@
 /home/miguel/Documentos/GitHub/automation-tests/src/test/java/com/uniquindio/automation/CucumberTest.java
+/home/miguel/Documentos/GitHub/automation-tests/src/test/java/com/uniquindio/automation/runner/CucumberAcceptanceTest.java
+/home/miguel/Documentos/GitHub/automation-tests/src/test/java/com/uniquindio/automation/runner/CucumberRealServicesTest.java
 /home/miguel/Documentos/GitHub/automation-tests/src/test/java/com/uniquindio/automation/steps/UsuarioSteps.java

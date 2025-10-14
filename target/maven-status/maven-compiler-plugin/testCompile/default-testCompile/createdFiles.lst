@@ -1,0 +1,4 @@
+com/uniquindio/automation/runner/CucumberRealServicesTest.class
+com/uniquindio/automation/steps/UsuarioSteps.class
+com/uniquindio/automation/CucumberTest.class
+com/uniquindio/automation/runner/CucumberAcceptanceTest.class
