@@ -5,6 +5,9 @@ import io.restassured.http.ContentType;
 import net.datafaker.Faker;
 import io.restassured.response.Response;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -40,9 +43,9 @@ public class UsuarioSteps {
     
     /**
      * URL base del servicio de usuarios.
-     * Se conecta directamente al servicio real en el puerto 8081.
+     * Se conecta directamente al servicio real usando la variable de entorno.
      */
-    private static final String BASE_URL = "http://localhost:8081/v1";
+    private static final String BASE_URL = System.getenv("AUT_TESTS_BASE_URL") + "/v1";
 
     // ===== ESTADO DE LAS PRUEBAS =====
     
@@ -328,7 +331,7 @@ public class UsuarioSteps {
     private void crearUsuarioAdmin() {
         // El usuario admin se crea directamente en la base de datos
         // con rol = 0 (ADMIN) ya que la API no permite crear usuarios admin
-        System.out.println("Usuario admin creado automáticamente en la base de datos");
+        System.out.println("ℹ️ Usuario admin debe estar creado en la base de datos con rol ADMIN");
     }
 
     /**
