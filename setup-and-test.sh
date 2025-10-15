@@ -68,19 +68,19 @@ setup_database() {
         
         # Insertar usuario administrador (rol 0)
         PGPASSWORD=$DB_PASSWORD psql -h $DB_HOST -p $DB_PORT -U $DB_USER -d $DB_NAME -c "
-            INSERT INTO usuarios (usuario, clave, codigo_recuperacion, fecha_codigo, correo, rol)
-            VALUES ('admin', 'admin123', NULL, NULL, 'admin@example.com', 0)
-            ON CONFLICT (usuario) DO UPDATE SET clave = 'admin123';
+            INSERT INTO usuarios (usuario, clave, codigo_recuperacion, fecha_codigo, correo, numero_telefono, rol)
+            VALUES ('admin', 'admin123', NULL, NULL, 'admin@example.com', '+1234567890', 0)
+            ON CONFLICT (usuario) DO UPDATE SET clave = 'admin123', numero_telefono = '+1234567890';
         "
         
         # Insertar usuarios normales (rol 1)
         PGPASSWORD=$DB_PASSWORD psql -h $DB_HOST -p $DB_PORT -U $DB_USER -d $DB_NAME -c "
-            INSERT INTO usuarios (usuario, clave, codigo_recuperacion, fecha_codigo, correo, rol) VALUES
-            ('juan',   'juan123',   NULL, NULL, 'juan@example.com',   1),
-            ('maria',  'maria123',  NULL, NULL, 'maria@example.com',  1),
-            ('pedro',  'pedro123',  NULL, NULL, 'pedro@example.com',  1),
-            ('laura',  'laura123',  NULL, NULL, 'laura@example.com',  1),
-            ('carlos', 'carlos123', NULL, NULL, 'carlos@example.com', 1)
+            INSERT INTO usuarios (usuario, clave, codigo_recuperacion, fecha_codigo, correo, numero_telefono, rol) VALUES
+            ('juan',   'juan123',   NULL, NULL, 'juan@example.com',   '+1234567891', 1),
+            ('maria',  'maria123',  NULL, NULL, 'maria@example.com',  '+1234567892', 1),
+            ('pedro',  'pedro123',  NULL, NULL, 'pedro@example.com',  '+1234567893', 1),
+            ('laura',  'laura123',  NULL, NULL, 'laura@example.com',  '+1234567894', 1),
+            ('carlos', 'carlos123', NULL, NULL, 'carlos@example.com', '+1234567895', 1)
             ON CONFLICT (usuario) DO NOTHING;
         "
         

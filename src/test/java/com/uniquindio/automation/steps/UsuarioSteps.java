@@ -144,12 +144,9 @@ public class UsuarioSteps {
           "usuario":"%s",
           "correo":"%s",
           "numeroTelefono":"%s",
-          "clave":"%s",
-          "nombres":"%s",
-          "apellidos":"%s"
+          "clave":"%s"
         }
-        """.formatted(ultimoUsuario, correo, ultimoTelefono, ultimoPassword, 
-                      faker.name().firstName(), faker.name().lastName());
+        """.formatted(ultimoUsuario, correo, ultimoTelefono, ultimoPassword);
 
         // Enviar petición POST a la API
         lastResponse = given()
