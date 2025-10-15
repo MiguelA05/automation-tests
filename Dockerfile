@@ -11,10 +11,6 @@ COPY pom.xml .
 # Copiar código fuente
 COPY src ./src
 
-# Script para esperar a que el microservicio esté listo
-COPY wait-for-service.sh /wait-for-service.sh
-RUN chmod +x /wait-for-service.sh
-
 # Script para setup de base de datos y tests
 COPY setup-and-test.sh /setup-and-test.sh
 RUN chmod +x /setup-and-test.sh
