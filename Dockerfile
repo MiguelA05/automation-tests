@@ -15,5 +15,5 @@ COPY src ./src
 COPY setup-and-test.sh /setup-and-test.sh
 RUN chmod +x /setup-and-test.sh
 
-# Ejecutar setup y tests
-CMD ["/setup-and-test.sh", "jwtmanual-taller1-micro", "8080"]
+# Ejecutar setup y tests contra el servicio domain-service
+CMD ["/setup-and-test.sh", "domain-service", "8080"]
