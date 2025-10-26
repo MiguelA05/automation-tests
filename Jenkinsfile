@@ -19,7 +19,7 @@ pipeline {
         MVN = "${MVN_HOME}/bin/mvn"
     }
 
-    stages {
+    stages {vi
         stage('Checkout repos') {
             steps {
                 dir('service') {
