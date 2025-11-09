@@ -12,7 +12,7 @@ COPY pom.xml .
 COPY src ./src
 
 # Script para setup de base de datos y tests
-COPY setup-and-test.sh /setup-and-test.sh
+COPY scripts/setup-and-test.sh /setup-and-test.sh
 RUN chmod +x /setup-and-test.sh
 
 # Ejecutar setup y tests contra el servicio domain-service
