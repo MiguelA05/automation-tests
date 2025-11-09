@@ -129,7 +129,17 @@ main() {
     if wait_for_service $HOST $PORT; then
         setup_database
         run_tests
-        keep_running
+        echo "✅ Tests completados."
+        echo "🔄 Contenedor se mantendrá corriendo para ejecutar tests adicionales."
+        echo "📊 Para ejecutar tests manualmente: mvn test -Dtest=CucumberTest"
+        echo "⏳ Re-ejecutando tests cada 5 minutos..."
+        
+        # Mantener el contenedor corriendo y re-ejecutar tests periódicamente
+        while true; do
+            sleep 300  # 5 minutos
+            echo "🔄 Re-ejecutando tests..."
+            mvn test -Dtest=CucumberTest -Dmaven.test.failure.ignore=true -q
+        done
     else
         echo "💥 No se pudo conectar al servicio, saliendo..."
         exit 1
