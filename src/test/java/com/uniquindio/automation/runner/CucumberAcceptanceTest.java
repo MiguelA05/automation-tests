@@ -30,14 +30,14 @@ import static io.cucumber.junit.platform.engine.Constants.PLUGIN_PROPERTY_NAME;
  * @version 1.0
  * @since 2024
  */
-@Suite  // Marca esta clase como una suite de pruebas de JUnit 5
-@IncludeEngines("cucumber")  // Usa el motor de Cucumber para ejecutar las pruebas
-@SelectClasspathResource("features")  // Busca archivos .feature en el classpath
+@Suite
+@IncludeEngines("cucumber")
+@SelectClasspathResource("features")
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME,
-        value = "com.uniquindio.automation.steps,com.uniquindio.automation.config")
+        value = "com.uniquindio.automation.steps")
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, 
-    value = "pretty, summary, html:target/cucumber-report.html, io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm")  // Plugins de reporte
-@ConfigurationParameter(key = "cucumber.filter.tags", value = "")  // Filtro de tags (vacío = todos)
+    value = "pretty, summary, html:target/cucumber-report.html")
+@ConfigurationParameter(key = "cucumber.filter.tags", value = "")
 public class CucumberAcceptanceTest {
     
     // Esta clase no necesita métodos porque:
