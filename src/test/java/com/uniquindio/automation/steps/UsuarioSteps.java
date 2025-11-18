@@ -1,17 +1,22 @@
 package com.uniquindio.automation.steps;
 
-import io.cucumber.java.es.*;
-import io.restassured.http.ContentType;
-import net.datafaker.Faker;
-import io.restassured.response.Response;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import static io.restassured.RestAssured.given;
-import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.anyOf;
+import static org.hamcrest.Matchers.blankOrNullString;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.notNullValue;
+
+import io.cucumber.java.es.Cuando;
+import io.cucumber.java.es.Dado;
+import io.cucumber.java.es.Entonces;
+import io.cucumber.java.es.Y;
+import static io.restassured.RestAssured.given;
+import io.restassured.http.ContentType;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import io.restassured.response.Response;
+import net.datafaker.Faker;
 
 /**
  * Implementación de pasos (Step Definitions) para las pruebas de aceptación de usuarios.
@@ -44,8 +49,17 @@ public class UsuarioSteps {
     /**
      * URL base del servicio de usuarios.
      * Se conecta directamente al servicio real usando la variable de entorno.
+     * Si no está configurada, usa el valor por defecto.
      */
-    private static final String BASE_URL = System.getenv("AUT_TESTS_BASE_URL") + "/v1";
+    private static final String BASE_URL = getBaseUrl();
+    
+    private static String getBaseUrl() {
+        String baseUrl = System.getenv("AUT_TESTS_BASE_URL");
+        if (baseUrl == null || baseUrl.isEmpty()) {
+            baseUrl = System.getProperty("baseUrl", "http://localhost:8081");
+        }
+        return baseUrl + "/v1";
+    }
 
     // ===== ESTADO DE LAS PRUEBAS =====
     
