@@ -2,4 +2,5 @@ com/uniquindio/automation/steps/UsuarioSteps.class
 com/uniquindio/automation/steps/SistemaCompletoSteps.class
 com/uniquindio/automation/CucumberTest.class
 com/uniquindio/automation/runner/CucumberRealServicesTest.class
+com/uniquindio/automation/runner/CucumberSistemaCompletoTest.class
 com/uniquindio/automation/runner/CucumberAcceptanceTest.class
