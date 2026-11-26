@@ -2,6 +2,12 @@
 
 Proyecto de pruebas funcionales/E2E desacoplado del microservicio. Ejecuta escenarios Cucumber contra la API expuesta.
 
+## Qué demuestra una ejecución
+
+La [suite de usuarios](src/test/resources/features/usuarios.feature) incluye registro, login y consulta con permisos administrativos. Los pasos hacen solicitudes HTTP a la URL configurada. Usa una instancia de desarrollo con datos de prueba y el servicio levantado antes de ejecutar Maven: varios escenarios crean o modifican usuarios.
+
+Abre el reporte de Cucumber después de la ejecución y localiza el escenario de login. Sus pasos permiten distinguir un rechazo de credenciales de un error al conectar con el servicio. La [guía de aceptación](src/test/resources/README-Cucumber.md) explica la infraestructura y las definiciones de pasos.
+
 ## Requisitos
 - Java 21
 - Maven 3.9+
